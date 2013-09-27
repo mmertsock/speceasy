@@ -21,7 +21,7 @@ namespace SpecEasy
             System.Diagnostics.Debug.WriteLine(finalOutput);
 
             if (exceptions.Any())
-                throw new Exception("Specifications failed!", exceptions[0]);
+                throw new SpecException("Specifications failed!", exceptions[0]);
         }
         
         protected void AssertWasThrown<T>() where T : Exception
@@ -32,7 +32,7 @@ namespace SpecEasy
                 return;
             }
 
-            throw new Exception("Expected exception was not thrown");
+            throw new SpecException("Expected exception was not thrown");
         }
 
         private Dictionary<string, Action> then = new Dictionary<string, Action>();
@@ -41,7 +41,8 @@ namespace SpecEasy
 
         protected IContext Given(string description, Action setup)
         {
-            if (contexts.ContainsKey(description)) throw new Exception("Reusing a given description");
+            if (contexts.ContainsKey(description))
+                throw new InvalidTestConfigurationException(string.Format("Given descriptions must be unique. The Given description '{0}' was reused.", description));
             return contexts[description] = new Context(setup);
         }
 
