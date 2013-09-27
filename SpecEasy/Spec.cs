@@ -21,7 +21,10 @@ namespace SpecEasy
             System.Diagnostics.Debug.WriteLine(finalOutput);
 
             if (exceptions.Any())
-                throw new SpecException("Specifications failed!", exceptions[0]);
+            {
+                var message = string.Format("{0} {1} failed!", exceptions.Count, exceptions.Count == 1 ? "specification" : "specifications");
+                throw new SpecException(message, exceptions[0]);
+            }
         }
         
         protected void AssertWasThrown<T>() where T : Exception
