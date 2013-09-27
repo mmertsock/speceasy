@@ -66,7 +66,7 @@ SpecEasy doesn't require that you decorate your code with attributes to run test
 
 Now, if we run the test, it fails. 
 
-    Test 'TrackAbout.Mobile.Test.Unit.FizzBuzz.FizzBuzzSpecs.Spec.Verify' failed: System.Exception : Specifications failed!
+    Test 'TrackAbout.Mobile.Test.Unit.FizzBuzz.FizzBuzzSpecs.Spec.Verify' failed: SpecEasy.SpecException : Specifications failed!
     ----> NUnit.Framework.AssertionException :   Expected string length 1 but was 0. Strings differ at index 0.
     Expected: "1"
     But was:  <string.Empty>
@@ -83,7 +83,7 @@ Once we change the FizzBuzz class to allow the test to pass, we see the followin
     ------------ FULL RESULTS ------------
     given an input of 1
     when running FizzBuzz
-    it should return a stringified 1
+    then it should return a stringified 1
 
     1 passed, 0 failed, 0 skipped
 
